@@ -3,19 +3,21 @@ from flask import (
     request,
     jsonify
 )
-from flask.wrappers import Request
+from flask_cors import CORS
+
 import decoders
 import db
 from pydantic import ValidationError
 
 app = Flask(__name__)
+CORS(app, origins=["http://localhost:3000"])
 
 @app.route('/ping', methods=['GET'])
 def ping():
     return "Ping", 200
     
-@app.route('/make_order', methods=['POST'])
-def make_order():
+@app.route('/send_order', methods=['POST'])
+def send_order():
     try:
         order = decoders.SendOrderDecoder.parse_obj(request.json)
     except ValidationError:
