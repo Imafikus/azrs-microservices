@@ -30,5 +30,8 @@ def send_order():
     
     return 'Order received', 200
     
+def create_app():
+    return app
+    
 if __name__ == "__main__":
     app.run(debug=True, port=5005)
