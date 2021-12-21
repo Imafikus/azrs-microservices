@@ -20,6 +20,7 @@ export const getAllAvailableItems = async (): Promise<string[]> => {
     return (items as Item[]).map(item => item.item_name);
 }
 
-export const updateInventory = (item: string): void => {
-    console.log(`Updating inventory for ${item}`);
+export const updateInventory = async (item: string): Promise<void> => {
+    const conn = await mysql.createConnection(connectionData);
+    await conn.execute(`UPDATE items SET qty = qty - 1 WHERE item_name = '${item}'`);
 }

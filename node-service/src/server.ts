@@ -26,11 +26,10 @@ app.get('/ping', (req: express.Request, res:express.Response) => {
 
 app.get('/available_items', async (req: express.Request, res:express.Response) => {
   const items = await getAllAvailableItems();
-  console.log('items', items);
   res.status(200).send(items);
 })
 
-app.post('/update_inventory', (req: express.Request, res:express.Response) => {
+app.post('/update_inventory', async (req: express.Request, res:express.Response) => {
   updateInventory(req.body.item);
   res.status(200).send('Item updated');
 })

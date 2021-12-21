@@ -6,7 +6,7 @@ import * as api from './api';
 function App() {
   
   const [email, setEmail] = useState('');
-  const [selectedItem, setSelectedItem] = useState('');
+  const [selectedItem, setSelectedItem] = useState('item1');
   const [infoMessage, setInfoMessage] = useState('');
   const [availableItems, setAvailableItems] = useState<Array<string>>([]);
   
@@ -35,7 +35,6 @@ function App() {
   
   const onSubmit = async () => {
     setInfoMessage('');
-    console.log(`Selected email: ${email}, selected item: ${selectedItem}`);
     const res = await api.sendOrder(email, selectedItem);
     if(res.status !== 200) {
       setInfoMessage(res.data);

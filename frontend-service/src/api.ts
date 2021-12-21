@@ -22,8 +22,7 @@ export const getAvailableItems = async (): Promise<Array<string>> => {
 }
 
 export const updateIntenvory = async (item: string): Promise<void> => {
-  console.log('updateIntenvory triggered');
-  const res = await axios.post(
+  await axios.post(
     'http://localhost:8080/update_inventory',
     {
       'item': item
