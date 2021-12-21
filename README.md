@@ -15,3 +15,8 @@ User inputs email and chooses items from the drop down menu and after ordering i
 One backend service is handling user related data, other is handling item related data.
 
 There are 2 separate databases.
+
+Service which handles users also uses external API to get the exact time.
+
+
+![Architecture](/architecture.png)
