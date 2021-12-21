@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import * as api from './api';
 
@@ -8,6 +8,14 @@ function App() {
   const [email, setEmail] = useState('');
   const [selectedItem, setSelectedItem] = useState('');
   const [infoMessage, setInfoMessage] = useState('');
+  const [availableItems, setAvailableItems] = useState<Array<string>>([]);
+  
+  useEffect(() => {    
+    (async () => {
+      const items = await api.getAvailableItems();
+      setAvailableItems(items);
+    })();
+  }, []);
   
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
@@ -18,8 +26,7 @@ function App() {
   }
   
   const getAvailableItems = () => {
-    const dummyList = ['item1', 'item2', 'item3'];
-    return dummyList.map(item => {
+    return availableItems.map(item => {
       return (
         <option key={uuidv4()} value={item}>{item}</option>
       )
@@ -29,6 +36,7 @@ function App() {
   const onSubmit = async () => {
     setInfoMessage('');
     console.log(`Selected email: ${email}, selected item: ${selectedItem}`);
+    await api.updateIntenvory(selectedItem);
     const res = await api.sendOrder(email, selectedItem);
     setInfoMessage(res);
   }
