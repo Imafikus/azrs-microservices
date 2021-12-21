@@ -36,9 +36,12 @@ function App() {
   const onSubmit = async () => {
     setInfoMessage('');
     console.log(`Selected email: ${email}, selected item: ${selectedItem}`);
-    await api.updateIntenvory(selectedItem);
     const res = await api.sendOrder(email, selectedItem);
-    setInfoMessage(res);
+    if(res.status !== 200) {
+      setInfoMessage(res.data);
+      return;
+    }
+    await api.updateIntenvory(selectedItem);
   }
   
   return (    

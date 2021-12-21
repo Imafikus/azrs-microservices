@@ -1,15 +1,19 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
-export const sendOrder = async (email: string, item: string): Promise<string> => {
+export const sendOrder = async (email: string, item: string): Promise<AxiosResponse> => {
   console.log('sendOrder triggered...');
-  const res = await axios.post(
-    `http://localhost:5005/send_order`,
-    {
-      'email': email,
-      'ordered_item': 'item'
-    }
-  );
-  return res.data;
+  try {
+    const res = await axios.post(
+      `http://localhost:5005/send_order`,
+      {
+        'email': email,
+        'ordered_item': 'item'
+      }
+    );
+    return res;
+  } catch (err: any) {
+    return err.response;
+  }
 }
 
 export const getAvailableItems = async (): Promise<Array<string>> => {
@@ -18,6 +22,7 @@ export const getAvailableItems = async (): Promise<Array<string>> => {
 }
 
 export const updateIntenvory = async (item: string): Promise<void> => {
+  console.log('updateIntenvory triggered');
   const res = await axios.post(
     'http://localhost:8080/update_inventory',
     {

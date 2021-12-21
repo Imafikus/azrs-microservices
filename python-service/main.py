@@ -1,7 +1,6 @@
 from flask import (
     Flask,
     request,
-    jsonify
 )
 from flask_cors import CORS
 
@@ -22,6 +21,10 @@ def send_order():
         order = decoders.SendOrderDecoder.parse_obj(request.json)
     except ValidationError:
         return 'Invalid format', 400
+        
+    user = db.get_user_by_email(order.email)
+    if user is None:
+        return 'User doesn\'t exist', 404
     
     print(f'Make order for email {order.email}, item: {order.ordered_item}')
     return 'Order received', 200
