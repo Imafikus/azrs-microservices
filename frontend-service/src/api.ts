@@ -7,7 +7,7 @@ export const sendOrder = async (email: string, item: string): Promise<AxiosRespo
       `http://localhost:5005/send_order`,
       {
         'email': email,
-        'ordered_item': 'item'
+        'ordered_item': item
       }
     );
     return res;

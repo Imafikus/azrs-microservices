@@ -25,8 +25,9 @@ def send_order():
     user = db.get_user_by_email(order.email)
     if user is None:
         return 'User doesn\'t exist', 404
+        
+    db.save_order(order.email, order.ordered_item)
     
-    print(f'Make order for email {order.email}, item: {order.ordered_item}')
     return 'Order received', 200
     
 if __name__ == "__main__":

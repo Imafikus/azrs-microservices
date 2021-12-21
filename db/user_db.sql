@@ -19,6 +19,7 @@ VALUES
 CREATE TABLE all_orders (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     email VARCHAR(64) NOT NULL,
+    item VARCHAR(64) NOT NULL,
     created_at VARCHAR(64) NOT NULL,
     CONSTRAINT FK_email FOREIGN KEY (email) REFERENCES users(email)
 );
