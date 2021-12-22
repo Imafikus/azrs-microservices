@@ -41,7 +41,9 @@ npm run start
 
 if you want to run just FE service in a container run:
 
-> `docker-compose up frontend_service`
+```shell
+docker-compose up frontend_service
+```
 
 ### Node service
 
@@ -53,10 +55,11 @@ npm install
 npm run dev
 ```
 
-
 if you want to run just node service in a container run:
 
-> `docker-compose up node_service`
+```shell
+docker-compose up node_service
+```
 
 ### Python service
 
@@ -71,7 +74,9 @@ python main.py
 
 if you want to run just python service in a container run:
 
-> `docker-compose up python_service`
+```shell
+docker-compose up python_service
+```
 
 ## Running all services via docker-compose
 
