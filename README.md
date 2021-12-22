@@ -27,7 +27,9 @@ Service which handles users also uses external API to get the exact time.
 
 Easiest way to run both databases is via docker compose using the following command:
 
-> `docker-compose up item_db user_db`
+```shell
+docker-compose up item_db user_db
+```
 
 ### Frontend service
 
