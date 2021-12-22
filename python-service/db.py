@@ -1,14 +1,16 @@
+
 from typing import Optional
+import os 
 import mysql.connector
 import requests
 
 def get_connection():
     cn = mysql.connector.connect(
-    host="localhost",
-    port=3306,
-    user="root",
-    password="toor",
-    database='user'
+        host=os.getenv("DB_HOST", "localhost"),
+        port=3306,
+        user="root",
+        password="toor",
+        database='user'
     )
     return cn
 

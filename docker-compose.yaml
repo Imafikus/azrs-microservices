@@ -1,0 +1,38 @@
+version: "3.9"
+services:
+  user_db:
+    build:
+      context: ./db
+      dockerfile: user_db.dockerfile
+    ports:
+      - 3306:3306
+  item_db:
+    build:
+      context: ./db
+      dockerfile: item_db.dockerfile
+    ports:
+      - 3307:3306
+  node_service:
+    build:
+      context: ./node-service
+      dockerfile: Dockerfile
+    environment:
+      - DB_HOST=host.docker.internal
+    ports:
+      - 8080:8080   
+  python_service:
+    build:
+      context: ./python-service
+      dockerfile: Dockerfile
+    environment:
+      - DB_HOST=host.docker.internal
+    ports:
+      - 5005:5005
+  frontend_service:
+    build:
+      context: ./frontend-service
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    
+    

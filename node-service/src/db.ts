@@ -1,8 +1,7 @@
 import * as mysql from 'mysql2/promise';
-import internal from 'stream';
 
 const connectionData = {
-    host: 'localhost',
+    host: process.env.DB_HOST !== undefined ? process.env.DB_HOST : '127.0.0.1',
     port: 3307,
     user: 'root',
     password: 'toor',
