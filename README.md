@@ -20,3 +20,70 @@ Service which handles users also uses external API to get the exact time.
 
 
 ![Architecture](/architecture.png)
+
+## Running individual services
+
+### Databases
+
+Easiest way to run both databases is via docker compose using the following command:
+
+> `docker-compose up item_db user_db`
+
+### Frontend service
+
+If you want to run it without container do the following:
+
+```shell
+cd frontend-service
+npm install
+npm run start
+```
+
+if you want to run just FE service in a container run:
+
+> `docker-compose up frontend_service`
+
+### Node service
+
+If you want to run it without container do the following:
+
+```shell
+cd node-service
+npm install
+npm run dev
+```
+
+
+if you want to run just node service in a container run:
+
+> `docker-compose up node_service`
+
+### Python service
+
+If you want to run it without container do the following:
+
+```shell
+cd python-service
+pipenv shell
+pipenv install
+python main.py
+```
+
+if you want to run just python service in a container run:
+
+> `docker-compose up python_service`
+
+## Running all services via docker-compose
+
+To start all services together just run:
+
+`docker-compose up`
+
+## Things to improve
+
+- Better env variables
+- Better error handling on FE
+- Better error handling on backend services
+- Better db abstractions
+- Not all edge cases covered
+- Multistage builds missing
