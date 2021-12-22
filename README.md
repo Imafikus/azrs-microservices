@@ -82,7 +82,9 @@ docker-compose up python_service
 
 To start all services together just run:
 
-`docker-compose up`
+```shell
+docker-compose up
+```
 
 ## Things to improve
 
