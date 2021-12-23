@@ -31,6 +31,7 @@ def get_user_by_email(email: str) -> Optional[str]:
     
 def save_order(email: str, item: str):
     try:
+        #? Make API call
         exact_timestamp = requests.get('http://worldtimeapi.org/api/timezone/Europe/Belgrade')
         created_at = exact_timestamp.json()['utc_datetime']
     except:
